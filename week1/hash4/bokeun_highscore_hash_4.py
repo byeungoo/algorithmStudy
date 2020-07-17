@@ -2,13 +2,10 @@ def solution(genres, plays):
     answer = []
 
     chartMap = {}
-
     for i in range(len(genres)):
         if genres[i] not in chartMap:
             chartMap[genres[i]] = {}
             chartMap[genres[i]]["count"] = 0
-
-    for i in range(len(plays)):
         chartMap[genres[i]][i] = plays[i]
         chartMap[genres[i]]["count"] += plays[i]
 
@@ -16,7 +13,6 @@ def solution(genres, plays):
         chartMap[k] = sorted(chartMap[k].items(), reverse=True, key=lambda x:x[1])
 
     sortedMap = sorted(chartMap.items(), reverse=True, key=lambda x:x[1][0][1])
-
     for s in sortedMap:
         try:
             answer.append(s[1][1][0])
