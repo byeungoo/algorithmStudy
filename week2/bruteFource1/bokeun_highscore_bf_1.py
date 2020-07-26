@@ -21,7 +21,7 @@ def solution(answers):
             answer.append(i + 1)
         elif score > max:
             max = score
-            answer.pop()
+            answer = []
             answer.append(i + 1)
 
     return answer
@@ -29,6 +29,8 @@ def solution(answers):
 
 tc1 = [1, 2, 3, 4, 5]
 tc2 = [1, 3, 2, 4, 2]
+tc3 = [1, 2, 2, 3, 3, 2, 4, 4]
 
 print(solution(tc1))
 print(solution(tc2))
+print(solution(tc3))
