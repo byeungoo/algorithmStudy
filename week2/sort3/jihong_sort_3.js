@@ -18,4 +18,4 @@ const solution = (citations) => {
 console.log(solution([3, 2, 2, 8, 10, 0, 6, 1, 5]));
 console.log(solution([0]));
 console.log(solution([3, 0, 6, 1, 5]));
-console.log(solution([6, 6, 6, 6, 6]));
+console.log(solution([6, 6, 6, 6]));
