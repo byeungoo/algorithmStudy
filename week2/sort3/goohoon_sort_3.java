@@ -1,19 +1,40 @@
 import java.util.*;
 
-class Solution {
-    public int solution(int[] citations) {
-        
-        int answer = 0;
-    
-        Arrays.sort(citations);
-        int len = citations.length;     
+import java.util.*;
 
-        for (int i = 0; i < len; i++) {
-            int h = citations.length - i;
- 
-            if (citations[i] >= h) {
-                answer = h;
-                break;
+class Solution {
+
+    class Node{
+        int x = 0;
+        int y = 0;
+    }
+
+    public void bfs( Boolean[][] visited, int[][] computers, int x, int y, int n){
+
+        Queue<Integer> queue = new LinkedList();
+        visited[x][y] = true;
+        queue.offer(computers[x][y]);
+
+        while(!queue.isEmpty()){
+            if(x-1<0 || x+1 == n || y-1<0 || y+1 == n){
+                continue;
+            }
+
+
+        }
+    }
+
+    public int solution(int n, int[][] computers) {
+
+        int answer = 0;
+        Boolean[][] visited = new Boolean[n][n];
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(visited[i][j] == false){
+                    //bfs(visited, computers, i, j, n);
+                    answer++;
+                }
             }
         }
 
