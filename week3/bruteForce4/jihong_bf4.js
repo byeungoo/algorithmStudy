@@ -4,7 +4,7 @@ function solution(brown, yellow) {
   const answer = [];
   while (bWidth >= bHeight) {
     if (yellow == (bHeight - 2) * (bWidth - 2)) {
-      console.log(bWidth, bHeight);
+      // console.log(bWidth, bHeight);
       answer.push(bWidth);
       answer.push(bHeight);
     }
