@@ -1,3 +1,7 @@
+/*
+ * 풀이시간 : 1시간
+*/
+
 class Solution {
     
     class Location{
