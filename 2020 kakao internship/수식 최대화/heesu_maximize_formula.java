@@ -4,6 +4,8 @@ import static java.lang.Math.abs;
 
 class Solution {
     long answer = 0;
+
+
     public long solution(String expression) {
         HashSet<Character> ops = new HashSet<>();
         LinkedList<Character> expOps = new LinkedList<>();
@@ -23,23 +25,27 @@ class Solution {
             nums.add(Long.parseLong(numArr[i]));
         }
 
+        // 현재 있는 수식으로 나오는 조합 셋팅
         perm(ops.toArray(new Character[ops.size()]), 0, ops.size(), expOps, nums);
 
         return answer;
     }
     void perm(Character[] ops, int depth, int n, LinkedList<Character> expOps, LinkedList<Long> nums){
         if(depth == n-1){
-            LinkedList<Long> tgtNums = new LinkedList<>();
-            LinkedList<Character> tgtExpOps = new LinkedList<>();
+            LinkedList<Long> tgtNums = new LinkedList<>();  // 숫자 저장장
+            LinkedList<Character> tgtExpOps = new LinkedList<>();  // 연산자 저
             tgtNums.addAll(nums);
             tgtExpOps.addAll(expOps);
 
-            // 계산 ( perm()에서 구한 연산자 우선순위별iterate)
+            // 계산 ( perm()에서 구한 연산자 우선순위별자 iterate)
             for(int i=0;i<ops.length;i++){
                 eval(tgtNums, tgtExpOps, ops[i].charValue());
             }
 
-            if(abs(tgtNums.get(0).longValue()) > answer) answer = abs(tgtNums.get(0).longValue());
+            // 10의 64승까지 나올 수 있으므로..
+            if(abs(tgtNums.get(0).longValue()) > answer){
+                answer = abs(tgtNums.get(0).longValue());
+            }
 
         }
         for(int i=depth;i<n;i++){
@@ -64,6 +70,14 @@ class Solution {
             if(tgtOp == expOps.get(cur)){
                 long result = Long.MAX_VALUE;
 
+                /* 1 + 2 - 3
+                 nums-> 1 2 3
+                 ops -> + -
+
+                 nums -> 3 3
+                 ops  -> -
+                 */
+
                 if(tgtOp == '+'){
                     result = nums.get(cur) + nums.get(cur+1);
                 }else if(tgtOp == '-'){
@@ -83,3 +97,7 @@ class Solution {
         }
     }
 }
+/*
+ - permutation..
+ - Long 에러 (문제 조건 잘보기)
+ */
