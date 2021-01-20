@@ -1,53 +1,63 @@
 function solution(gems) {
     const gemSet = new Set(gems);
-    const checkSet = new Set();
+    const checkSize = gemSet.size;
+    const gemMap = new Map();
 
-    console.log(gemSet);
-    let start = gems.length - 2;
-    let end = gems.length - 1;
-    let dist = 100001;
-    let tmpStart = start;
-    let tmpEnd = end;
+    let start = 0;
+    let end = 1;
+    const answer = [0, gems.length];
+    gemMap.set(gems[0], 1);
 
-    checkSet.add(gems[end]);
-
-    if (gemSet.size === 1) {
-        return [1, 1];
-    }
-    while (start >= 0) {
-        if (start === end) {
-            start -= 1;
+    while (end < gems.length && start < gems.length) {
+        if (start >= end) {
+            end += 1;
         }
-        console.log(start, end);
-        if (gems[start] !== gems[end]) {
-            checkSet.add(gems[start]);
 
-            if (checkSet.size === gemSet.size) {
-                if (dist > end - start) {
-                    dist = end - start;
-                    tmpStart = start;
-                    tmpEnd = end;
+        if (gemMap.size === checkSize) {
+            if (end - start < answer[1] - answer[0]) {
+                answer[1] = end;
+                answer[0] = start;
+            }
+
+            if (gemMap.get(gems[start]) > 0) {
+                gemMap.set(gems[start], gemMap.get(gems[start]) - 1);
+
+                if (gemMap.get(gems[start]) === 0) {
+                    gemMap.delete(gems[start]);
+                }
+                start += 1;
+            }
+        } else {
+            if (!gemMap.has(gems[end])) {
+                gemMap.set(gems[end], 1);
+            } else {
+                gemMap.set(gems[end], gemMap.get(gems[end]) + 1);
+            }
+
+            end += 1;
+
+            if (end === gems.length) {
+                while (start < gems.length && gemMap.size === checkSize) {
+                    if (end - start < answer[1] - answer[0]) {
+                        answer[1] = end;
+                        answer[0] = start;
+                    }
+
+                    if (gemMap.get(gems[start]) > 0) {
+                        gemMap.set(gems[start], gemMap.get(gems[start]) - 1);
+
+                        if (gemMap.get(gems[start]) === 0) {
+                            gemMap.delete(gems[start]);
+                        }
+                        start += 1;
+                    }
                 }
             }
-            start -= 1;
-            console.log("a", start, end);
-        } else {
-            end -= 1;
-            while (gems[end] === gems[end - 1] && start < end) {
-                end -= 1;
-            }
-            // console.log("b", start, end);
         }
     }
 
-    // console.log(dist);
-    if (dist > end - start) {
-        dist = end - start;
-        tmpStart = start;
-        tmpEnd = end;
-    }
-
-    return [tmpStart + 1, tmpEnd + 1];
+    answer[0] += 1;
+    return answer;
 }
 
 console.log(
