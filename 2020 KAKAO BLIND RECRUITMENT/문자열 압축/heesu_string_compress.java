@@ -22,8 +22,8 @@ class Solution {
             while(strtIdx + i <= s.length()){
 
                 if(targetStr.equals(s.substring(strtIdx, strtIdx + i))){
-                    compCnt++;
-                    compStrChngCnt++;
+                    compCnt++; // 압축된 횟수 aaaabb -> 10a2b
+                    compStrChngCnt++; //2
 
                 }else{
                     targetStr = s.substring(strtIdx, strtIdx+i);

@@ -37,7 +37,7 @@ class Solution {
 
             for (int i = 0; i < 4; i++) {
 
-                // 체크1.
+                // 체크1. 좌우 체크
                 if (cur.x + moveX[i] > board.length - 1 || cur.y + moveY[i] > board.length - 1
                         || cur.x + moveX[i] < 0 || cur.y + moveY[i] < 0) {
                     continue;
@@ -48,7 +48,7 @@ class Solution {
                     continue;
                 }
 
-                // 체크3.
+                // 체크3. 벽으로 막혀있는 부분 체크
                 if(board[cur.y + moveY[i]][cur.x + moveX[i]] == 1){
                     continue;
                 }
