@@ -16,7 +16,7 @@ function solution(p) {
             const reverse = [...u.slice(1, u.length - 1)]
                 .map((v) => (v === "(" ? ")" : "("))
                 .join("");
-            // console.log("tmp", tmp);
+            // console.log("tmp", tmp); [1,2,3] => '1,2,3'
             // console.log("reverse", reverse);
             return tmp + reverse;
         }
