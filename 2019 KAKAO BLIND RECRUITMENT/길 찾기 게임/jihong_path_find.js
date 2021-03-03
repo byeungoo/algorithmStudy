@@ -1,6 +1,4 @@
 function solution(nodeinfo) {
-    var answer = [[]];
-    const nodeTree = new Map();
     const sortedNode = nodeinfo
         .map((v, i) => {
             return new Node(v[0], v[1], i + 1);
